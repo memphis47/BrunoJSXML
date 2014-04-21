@@ -1,0 +1,25 @@
+			td {
+				border:1px gray;
+				padding: 7px;
+			}
+
+			table{
+				border:1px solid gray;
+				border-collapse:collapse;
+				font-family:Trebuchet MS, Verdana, Arial, Sans-serif;
+				font-size:12px; color:#000020; font-weight:normal; 
+				visibility:hidden;
+			}
+
+			.Semestre {
+				border:1px solid gray;
+				background-color:#e9ddaf;
+				text-align:center;
+				font-weight:bolder;
+				color:#000020;
+			}	
+			.materias {
+				border:1px solid gray;
+				text-align: center;
+				width:50px;
+			}

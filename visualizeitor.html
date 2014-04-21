@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<script type="text/javascript" src = "visualizeitorScript.js" ></script>
+		<style type="text/css" href="vis.css">
+
+			td {
+				border:1px gray;
+				padding: 7px;
+			}
+
+			table{
+				border:1px solid gray;
+				border-collapse:collapse;
+				font-family:Trebuchet MS, Verdana, Arial, Sans-serif;
+				font-size:12px; color:#000020; font-weight:normal; 
+				visibility:hidden;
+			}
+
+			.Semestre {
+				border:1px solid gray;
+				background-color:#e9ddaf;
+				text-align:center;
+				font-weight:bolder;
+				color:#000020;
+			}	
+			.materias {
+				border:1px solid gray;
+				text-align: center;
+				width:50px;
+			}
+
+
+		</style>
+	<!--<script>
+		function myFunction()
+		{
+			document.getElementByclass("demo").innerHTML=document.getElementByclass("GRRAluno").value;
+		}
+	</script>-->
+</head>
+<body>
+
+	<form >
+		<p>GRR do Aluno :</p> 
+		<input id="GRRAluno"type="text" name="GRR" value=""><br>
+		
+	</form>
+	<button onclick="sayHello()">Click me</button>
+	<p id="demo"></p>
+	<form>
+		<table id="teste" class="teste" >
+			<tr> 
+					<th class="Semestre">1º Semestre</th> 
+					<th class="Semestre">2º Semestre</th> 
+					<th class="Semestre">3º Semestre</th> 
+					<th class="Semestre">4º Semestre</th> 
+					<th class="Semestre">5º Semestre</th> 
+					<th class="Semestre">6º Semestre</th> 
+					<th class="Semestre">7º Semestre</th> 
+					<th class="Semestre">8º Semestre</th>
+			</tr> 
+			<tr class="linha1"> 
+					<td class="materias" bgcolor="#f5f5f5">CI068</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI210</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI212</td> 
+					<td class="materias">CI215</td> 
+					<td class="materias">CI162</td> 
+					<td class="materias">CI163</td> 
+					<td class="materias">CI221</td> 
+					<td class="materias">OPT</td>
+			</tr> 
+			<tr class="linha2"> 
+					<td class="materias" bgcolor="#f5f5f5">CI055</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI056</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI057</td> 
+					<td class="materias">CI062</td> 
+					<td class="materias">CI065</td> 
+					<td class="materias">CI165</td> 
+					<td class="materias">CI211</td> 
+					<td class="materias">OPT</td>
+			</tr> 
+			<tr class="linha3"> 
+					<td class="materias" bgcolor="#f5f5f5">CM046</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI067</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI064</td> 
+					<td class="materias">CE003</td> 
+					<td class="materias">CI059</td> 
+					<td class="materias">CI209</td> 
+					<td class="materias">OPT</td> 
+					<td class="materias">OPT</td>
+			</tr>
+			<tr class="linha4"> 
+					<td class="materias" bgcolor="#f5f5f5">CM045</td> 
+					<td class="materias" bgcolor="#f5f5f5">CM005</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI237</td> 
+					<td class="materias">CI058</td> 
+					<td class="materias">CI061</td> 
+					<td class="materias">CI218</td> 
+					<td class="materias">OPT</td> 
+					<td class="materias">OPT</td>
+			</tr> 
+			<tr class="linha5"> 
+					<td class="materias" bgcolor="#f5f5f5">CM201</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI202</td> 
+					<td class="materias" bgcolor="#f5f5f5">CI166</td> 
+					<td class="materias">CI164</td> 
+					<td class="materias">SA214</td> 
+					<td class="materias">CI220</td> 
+					<td class="materias">TG I</td> 
+					<td class="materias">TG II</td>
+			</tr>
+			<tr>
+				<td class="codigo" colspan="3" bgcolor="#f5f5f5"><strong> * BLOCO A (Formação básica) </strong></td>
+				<td class="codigo" colspan="5">&nbsp;</td>
+			</tr>  
+		</table> 
+	</form>
+
+</body>
+</html>
