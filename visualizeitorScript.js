@@ -3,6 +3,7 @@ var TG = ["",""];
 var xml=null;
 var numVer="";
 
+
 function xmlMicoxLoader(url){
     if(window.XMLHttpRequest){
         var Loader = new XMLHttpRequest();
@@ -204,6 +205,47 @@ function xmlMicoxArvore(xmlNode,identacao,grr,opt,optB){
     
 }
 
+function getAluno(xml,grr,aluno){
+    var alunos=xml.getElementsByTagName("ALUNO");
+    for(i=0;i<alunos.length;i++){
+        if(alunos[i].childNodes[3].firstChild.nodeValue==grr.value)
+            aluno.push(alunos[i]);
+    }
+}
+
+function setMateria(vers,materia,cor){
+    var element=document.getElementById(materia+vers);
+    if(element!=null)
+        element.style.background=cor;
+}
+
+function findMateria(aluno){
+    var vers=aluno[0].childNodes[8].firstChild.nodeValue;
+    var materia;
+    var estrutura;
+    var status;
+
+    if(aluno[0].childNodes[8].firstChild.nodeValue=="1998")
+        vers="B";
+    else
+        vers="";
+
+    for(i=0;i<aluno.length;i++){
+        materia=aluno[i].childNodes[16];
+        estrutura=aluno[i].childNodes[24].firstChild.nodeValue;
+        status=aluno[i].childNodes[15].firstChild.nodeValue;
+        if(estrutura=="Obrigatórias" && status=="Aprovado")
+            setMateria(vers,materia,"#00913D");
+        else if(estrutura=="Obrigatórias" && (status=="Reprovado por nota" || status=="Reprovado por Frequência"))
+            setMateria(vers,materia,"#C2000D");
+        else if(estrutura=="Obrigatórias" && (status=="Equivalência de Disciplina" || status=="Dispensa de Disciplinas (com nota)"))
+            setMateria(vers,materia,"#E6E61A");
+        else if(estrutura=="Obrigatórias" && status=="Matrícula")
+            setMateria(vers,materia,"#0075C9");
+
+    }
+}
+
 function sayHello(){
 	var grr=document.getElementById("GRRAluno");
 	if(grr.value=="" || grr.value==null || grr == null){
@@ -217,10 +259,13 @@ function sayHello(){
     	document.getElementById("demo").innerHTML=grr.value;
         document.getElementById("1998").style.visibility="visible";
         var opt= ["","","","","","","","",""];
+        var aluno=[];
         if(xml==null)
             xml=xmlMicoxLoader("alunos.xml");
-        xmlMicoxArvore(xml,"",grr,opt);
-        saveHtml(opt,numVer);
+        getAluno(xml,grr,aluno);
+        findMateria(aluno);
+        //xmlMicoxArvore(xml,"",grr,opt);
+        //saveHtml(opt,numVer);
     	return true;
 
     }
