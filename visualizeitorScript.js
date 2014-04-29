@@ -1,4 +1,5 @@
 var optativas = ["","","","","","","","",""];
+var materiasB = ["CI055B","CI055B","CI055B","CI055B","CI055B","CI055B","CI055B"]
 var TG = ["",""];
 var xml=null;
 var numVer="";
@@ -219,29 +220,80 @@ function setMateria(vers,materia,cor){
         element.style.background=cor;
 }
 
+function setOutro(ind,vers,materia,cor){
+	var opc="opc"+(ind.toString())+vers;
+    var element = document.getElementById(opc);
+	element.innerHTML=materia;
+	if(element!=null)
+        element.style.background=cor;
+    
+}
+
+function arrumarTabela(aluno){
+	var opc;
+	var vers;
+    document.getElementById("1998").style.visibility="visible";
+	if(aluno[0].childNodes[13].firstChild.nodeValue=="1998"){
+		document.getElementById("1998").style.visibility="visible";
+        vers="B";
+    }
+	else{
+		document.getElementById("2011").style.visibility="visible";
+        vers="";
+	}
+	for(i=1;i<9;i++){
+		opc="opc"+(i.toString())+vers;
+		var element = document.getElementById(opc);
+		element.innerHTML="-";
+		element.style.background="#f5f5f5";
+	}
+}
+
 function findMateria(aluno){
-    var vers=aluno[0].childNodes[8].firstChild.nodeValue;
+    var vers;
     var materia;
     var estrutura;
     var status;
-
-    if(aluno[0].childNodes[8].firstChild.nodeValue=="1998")
+    if(aluno[0].childNodes[13].firstChild.nodeValue=="1998")
         vers="B";
     else
         vers="";
-
+	ind=1;
     for(i=0;i<aluno.length;i++){
-        materia=aluno[i].childNodes[16];
-        estrutura=aluno[i].childNodes[24].firstChild.nodeValue;
-        status=aluno[i].childNodes[15].firstChild.nodeValue;
-        if(estrutura=="Obrigatórias" && status=="Aprovado")
-            setMateria(vers,materia,"#00913D");
-        else if(estrutura=="Obrigatórias" && (status=="Reprovado por nota" || status=="Reprovado por Frequência"))
-            setMateria(vers,materia,"#C2000D");
-        else if(estrutura=="Obrigatórias" && (status=="Equivalência de Disciplina" || status=="Dispensa de Disciplinas (com nota)"))
-            setMateria(vers,materia,"#E6E61A");
-        else if(estrutura=="Obrigatórias" && status=="Matrícula")
-            setMateria(vers,materia,"#0075C9");
+        materia=aluno[i].childNodes[29].firstChild.nodeValue;
+        estrutura=aluno[i].childNodes[45].firstChild.nodeValue;
+        status=aluno[i].childNodes[27].firstChild.nodeValue;
+		if(estrutura=="Obrigatórias"){
+			if(status=="Aprovado")
+				setMateria(vers,materia,"#00913D");
+			else if((status=="Reprovado por nota" || status=="Reprovado por Frequência"))
+				setMateria(vers,materia,"#C2000D");
+			else if((status=="Equivalência de Disciplina" || status=="Dispensa de Disciplinas (com nota)"))
+				setMateria(vers,materia,"#E6E61A");
+			else if(status=="Matrícula")
+				setMateria(vers,materia,"#0075C9");
+		}
+		else if(estrutura=="Disciplinas de outros cursos"){
+			if(status=="Aprovado"){
+				setOutro(ind,vers,materia,"#00913D");
+				ind++;
+			}
+			else if((status=="Reprovado por nota" || status=="Reprovado por Frequência")){
+				setOutro(ind,vers,materia,"#C2000D");
+					ind++;
+			}
+			else if((status=="Equivalência de Disciplina" || status=="Dispensa de Disciplinas (com nota)")){
+				setOutro(ind,vers,materia,"#E6E61A");
+					ind++;
+			}
+			else if(status=="Matrícula"){
+				setOutro(ind,vers,materia,"#0075C9");
+				ind++;
+			}
+		}
+		else if(estrutura=="Optativas"){
+			
+		}
 
     }
 }
@@ -256,13 +308,15 @@ function sayHello(){
     	return false;
     }
     else{
+		
     	document.getElementById("demo").innerHTML=grr.value;
-        document.getElementById("1998").style.visibility="visible";
+        
         var opt= ["","","","","","","","",""];
         var aluno=[];
         if(xml==null)
             xml=xmlMicoxLoader("alunos.xml");
         getAluno(xml,grr,aluno);
+		arrumarTabela(aluno);
         findMateria(aluno);
         //xmlMicoxArvore(xml,"",grr,opt);
         //saveHtml(opt,numVer);
