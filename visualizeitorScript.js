@@ -1,4 +1,3 @@
-
 var optativasMaterias=[];
 var TG = ["",""];
 var xml=null;
@@ -232,19 +231,42 @@ function setOutro(ind,vers,materia,cor){
 function arrumarTabela(aluno){
 	var opc;
 	var vers;
+
 	if(aluno[0].childNodes[13].firstChild.nodeValue=="1998"){
 		document.getElementById("1998").style.visibility="visible";
-        vers="B";
-    }
+        	document.getElementById("2011").style.visibility="hidden";
+        	vers="B";
+    	}
 	else{
 		document.getElementById("2011").style.visibility="visible";
-        vers="";
+        	document.getElementById("1998").style.visibility="hidden";
+        	vers="";
 	}
+    	if(vers=="B"){
+	        var materias = document.getElementsByClassName("materiasB");
+	        var materiasCinzas = document.getElementsByClassName("materiasB1");
+	}
+    	else{
+	        var materias = document.getElementsByClassName("materiasA");
+	        var materiasCinzas = document.getElementsByClassName("materiasA1");
+    	}
+
+    	for(i=0;i<materias.length;i++){
+        
+        	materias[i].style.background="";
+        	materias[i].style.border="1px solid black";
+    	}
+    	for(i=0;i<materiasCinzas.length;i++){
+        	materiasCinzas[i].style.background="#CCCCCC";
+        	materiasCinzas[i].style.border="1px solid black";
+    	}
 	for(i=1;i<9;i++){
 		opc="opc"+(i.toString())+vers;
 		var element = document.getElementById(opc);
+        	if(element==null)
+            		return;
 		element.innerHTML="-";
-		element.style.background="#f5f5f5";
+		element.style.background="";
 	}
 }
 
