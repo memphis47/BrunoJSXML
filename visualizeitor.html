@@ -18,6 +18,7 @@
 				visibility:hidden;
 			}
 
+
 			.Semestre {
 				border:1px solid black;
 				background-color:#e9ddaf;
@@ -40,17 +41,17 @@
 		}
 	</script>-->
 </head>
-<body>
+<body >
 
 	<form >
 		<p>GRR do Aluno :</p> 
 		<input id="GRRAluno"type="text" name="GRR" value=""><br>
 		
 	</form>
-	<button onclick="sayHello()">Click me</button>
+	<button onclick="mostrarTabela()">Click me</button>
 	<p id="demo"></p>
 	<form>
-		<table id="2011" class="teste" >
+		<table id="2011" class="teste" oncontextmenu="return false;">
 			<tr> 
 					<th class="Semestre">1º Semestre</th> 
 					<th class="Semestre">2º Semestre</th> 
@@ -62,61 +63,61 @@
 					<th class="Semestre">8º Semestre</th>
 			</tr> 
 			<tr class="linha1"> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI068">CI068</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI210">CI210</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI212">CI212</td> 
-					<td class="materiasA" id="CI215">CI215</td> 
-					<td class="materiasA" id="CI162">CI162</td> 
-					<td class="materiasA" id="CI163">CI163</td> 
-					<td class="materiasA" id="CI221">CI221</td> 
-					<td class="materiasA" id="OPT1">OPT</td>
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI068">CI068</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI210">CI210</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI212">CI212</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI215">CI215</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI162">CI162</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI163">CI163</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI221">CI221</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="OPT1">OPT</td>
 			</tr> 
 			<tr class="linha2"> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI055">CI055</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI056">CI056</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI057">CI057</td> 
-					<td class="materiasA" id="CI062">CI062</td> 
-					<td class="materiasA" id="CI065">CI065</td> 
-					<td class="materiasA" id="CI165">CI165</td> 
-					<td class="materiasA" id="CI211">CI211</td> 
-					<td class="materiasA" id="OPT2">OPT</td>
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI055">CI055</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI056">CI056</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI057">CI057</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI062">CI062</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI065">CI065</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI165">CI165</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI211">CI211</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="OPT2">OPT</td>
 			</tr> 
 			<tr class="linha3"> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CM046">CM046</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI067">CI067</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI064">CI064</td> 
-					<td class="materiasA" id="CE003">CE003</td> 
-					<td class="materiasA" id="CI059">CI059</td> 
-					<td class="materiasA" id="CI209">CI209</td> 
-					<td class="materiasA" id="OPT3">OPT</td> 
-					<td class="materiasA" id="OPT4">OPT</td>
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM046">CM046</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI067">CI067</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI064">CI064</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CE003">CE003</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI059">CI059</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI209">CI209</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="OPT3">OPT</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="OPT4">OPT</td>
 			</tr>
 			<tr class="linha4"> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CM045">CM045</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CM005">CM005</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI237">CI237</td> 
-					<td class="materiasA" id="CI058">CI058</td> 
-					<td class="materiasA" id="CI061">CI061</td> 
-					<td class="materiasA" id="CI218">CI218</td> 
-					<td class="materiasA" id="OPT5">OPT</td> 
-					<td class="materiasA" id="OPT6">OPT</td>
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM045">CM045</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM005">CM005</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI237">CI237</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI058">CI058</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI061">CI061</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI218">CI218</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="OPT5">OPT</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="OPT6">OPT</td>
 			</tr> 
 			<tr class="linha5"> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CM201">CM201</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CM202">CM202</td> 
-					<td class="materiasA1" bgcolor="#f5f5f5" id="CI166">CI166</td> 
-					<td class="materiasA" id="CI164">CI164</td> 
-					<td class="materiasA" id="SA214">SA214</td> 
-					<td class="materiasA" id="CI220">CI220</td> 
-					<td class="materiasA" id="TGI">TG I</td> 
-					<td class="materiasA" id="TGII">TG II</td>
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM201">CM201</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM202">CM202</td> 
+					<td class="materiasA1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI166">CI166</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI164">CI164</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="SA214">SA214</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="CI220">CI220</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="TGI">TG I</td> 
+					<td class="materiasA"  onmousedown="mostrarMateria(this,event)" id="TGII">TG II</td>
 			</tr>
 			<tr>
 				<td class="codigo" colspan="3" bgcolor="#f5f5f5"><strong> * BLOCO A (Formação básica) </strong></td>
 				<td class="codigo" colspan="5">&nbsp;</td>
 			</tr>  
 		</table> 
-		<table id="1998" class="teste" >
+		<table id="1998" class="teste" oncontextmenu="return false;">
 			<tr> 
 					<th class="Semestre">1º Semestre</th> 
 					<th class="Semestre">2º Semestre</th> 
@@ -128,74 +129,74 @@
 					<th class="Semestre">8º Semestre</th>
 			</tr> 
 			<tr class="linha1"> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI055B">CI055</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI056B">CI056</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI057B">CI057</td> 
-					<td class="materiasB" id="CI059B">CI059</td> 
-					<td class="materiasB" id="CI058B">CI058</td> 
-					<td class="materiasB" id="CI061B">CI061</td> 
-					<td class="materiasB" id="CI220B">CI220</td> 
-					<td class="materiasB" id="TGIIB">TG II</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI055B">CI055</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI056B">CI056</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI057B">CI057</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI059B">CI059</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI058B">CI058</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI061B">CI061</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI220B">CI220</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="TGIIB">TG II</td> 
 			</tr> 
 			<tr class="linha2"> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI063B">CI063</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI067B">CI067</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI064B">CI064</td> 
-					<td class="materiasB" id="CI060B">CI060</td> 
-					<td class="materiasB" id="CI062B">CI062</td> 
-					<td class="materiasB" id="CI214B">CI214</td> 	
-					<td class="materiasB" id="CI221B">CI221</td> 
-					<td class="materiasB" id="OPT6B">OPT 6</td>
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI063B">CI063</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI067B">CI067</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI064B">CI064</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI060B">CI060</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI062B">CI062</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI214B">CI214</td> 	
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI221B">CI221</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT6B">OPT 6</td>
 			</tr> 
 			<tr class="linha3"> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI066B">CI066</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI068B">CI068</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI210B">CI210</td> 
-					<td class="materiasB" id="CI065B">CI065</td> 
-					<td class="materiasB" id="CI211B">CI211</td> 
-					<td class="materiasB" id="CI218B">CI218</td> 
-					<td class="materiasB" id="TGIB">TGI</td> 
-					<td class="materiasB" id="OPT7B">OPT 7</td>
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI066B">CI066</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI068B">CI068</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI210B">CI210</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI065B">CI065</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI211B">CI211</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI218B">CI218</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="TGIB">TGI</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT7B">OPT 7</td>
 			</tr>
 			<tr class="linha4"> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CM045B">CM045</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CM005B">CM005</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI237B">CI237</td> 
-					<td class="materiasB" id="CI069B">CI069</td> 
-					<td class="materiasB" id="CI215B">CI215</td> 
-					<td class="materiasB" id="CI236B">CI236</td> 
-					<td class="materiasB" id="OPT4B">OPT 4</td> 
-					<td class="materiasB" id="OPT8B">OPT 8</td>
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM045B">CM045</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM005B">CM005</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI237B">CI237</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI069B">CI069</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI215B">CI215</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI236B">CI236</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT4B">OPT 4</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT8B">OPT 8</td>
 			</tr> 
 			<tr class="linha5"> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CM046B">CM046</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CM202B">CM202</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="SA214B">SA214</td> 
-					<td class="materiasB" id="CI212B">CI212</td> 
-					<td class="materiasB" id="CI235B">CI235</td> 
-					<td class="materiasB" id="OPT2B">OPT 2</td> 
-					<td class="materiasB" id="OPT5B">OPT 5</td> 
-					<td class="materiasB" id="OPT9B">OPT 9</td>
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM046B">CM046</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM202B">CM202</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="SA214B">SA214</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI212B">CI212</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI235B">CI235</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT2B">OPT 2</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT5B">OPT 5</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT9B">OPT 9</td>
 			</tr>
 			<tr class="linha6"> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CM201B">CM201</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CI202B">CI202</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="CE003B">CE003</td> 
-					<td class="materiasB" id="CI219B">CI219</td> 
-					<td class="materiasB" id="SIN070B">SIN070</td> 
-					<td class="materiasB" id="OPT3B">OPT 3</td>
-					<td class="materiasB" bgcolor="#f5f5f5" id="opc1B">-</td>
-					<td class="materiasB" bgcolor="#f5f5f5" id="opc2B">-</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CM201B">CM201</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CI202B">CI202</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="CE003B">CE003</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CI219B">CI219</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="SIN070B">SIN070</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT3B">OPT 3</td>
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="opc1B">-</td>
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="opc2B">-</td> 
 			</tr>
 			<tr class="linha7"> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="opc3B">-</td> 
-					<td class="materiasB1" bgcolor="#f5f5f5" id="opc4B">-</td>
-					<td class="materiasB1" bgcolor="#f5f5f5" id="opc5B">-</td>
-					<td class="materiasB" id="CM224B">CM224</td> 
-					<td class="materiasB" id="OPT1B">OPT 1</td> 
-					<td class="materiasB" bgcolor="#f5f5f5" id="opc6B">-</td>
-					<td class="materiasB" bgcolor="#f5f5f5" id="opc7B">-</td>
-					<td class="materiasB" bgcolor="#f5f5f5" id="opc8B">-</td>
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="opc3B">-</td> 
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="opc4B">-</td>
+					<td class="materiasB1" onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="opc5B">-</td>
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="CM224B">CM224</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" id="OPT1B">OPT 1</td> 
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="opc6B">-</td>
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="opc7B">-</td>
+					<td class="materiasB"  onmousedown="mostrarMateria(this,event)" bgcolor="#f5f5f5" id="opc8B">-</td>
 			</tr>
 			
 		</table> 

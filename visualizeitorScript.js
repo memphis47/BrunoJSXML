@@ -1,7 +1,9 @@
 var optativasMaterias=[];
-var TG = ["",""];
+var tg1;
+var tg2;
 var xml=null;
 var numVer="";
+var aluno=[];
 
 
 function xmlMicoxLoader(url){
@@ -20,7 +22,7 @@ function xmlMicoxLoader(url){
 }
 
 
-function findPosition(opt){
+function lerHistorico(){
     var i;
     for(i=0;i<opt.length;i++){
         if(opt[i]=="Reprovado por nota" || opt[i]=="Reprovado por Frequência")
@@ -60,149 +62,41 @@ function saveHtml(opt,numVer){
     }
 }
 
-
-
-function xmlMicoxArvore(xmlNode,identacao,grr,opt,optB){
-    var arvoreTxt=""; //esta var armazenara o conteudo
-    endGrr=true;
-    var i=0;
-    while(endGrr && i<xmlNode.childNodes.length )
-    {//percorrendo os filhos do nó
-        if(xmlNode.childNodes[i].nodeType == 1){//ignorar espaços em branco
-            //pegando o nome do nó
-            
-            if(xmlNode.childNodes[i].childNodes.length==0){
-            //se não tiver filhos eu já pego o nodevalue
-
-                for(var z=0;z<xmlNode.childNodes[i].attributes.length;z++){
-                    var atrib = xmlNode.childNodes[i].attributes[z];
-                }
-            }
-            else if(xmlNode.childNodes[i].childNodes.length>0){
-
-                //se tiver filhos eu tenho que pegar o valor pegando o valor do primeiro filho
-                if(xmlNode.childNodes[i].nodeName=="MATR_ALUNO" && xmlNode.childNodes[i].firstChild.nodeValue!=grr.value){
-                    //arvoreTxt=arvoreTxt + "GRR:"+string(grr.value);
-                    endGrr=false;
-                    break;
-                }
-                else if(xmlNode.childNodes[i].nodeName=="SITUACAO"){
-                    status=xmlNode.childNodes[i].firstChild.nodeValue
-                }
-                else if(xmlNode.childNodes[i].nodeName=="COD_ATIV_CURRIC"){
-                    materia=xmlNode.childNodes[i].firstChild.nodeValue;
-                    
-                }
-                else if (xmlNode.childNodes[i].nodeName=="NUM_VERSAO"){
-                    
-                    if(xmlNode.childNodes[i].firstChild.nodeValue=="1998")
-                        numVer="B"
-                    else
-                        numVer=""
-                }
-                else if (xmlNode.childNodes[i].nodeName=="DESCR_ESTRUTURA"){
-                    
-                    if(status=="Aprovado"){
-                        document.getElementById("demo").innerHTML=xmlNode.childNodes[i].firstChild.nodeValue;
-                        if(numVer=="B")
-                            var element=document.getElementById(materia+"B");
-                        else
-                            var element=document.getElementById(materia+"");
-                        if(element!=null)
-                            element.style.background="#00913D";
-                        else if(materia!=null){
-                            if(xmlNode.childNodes[i].firstChild.nodeValue=="Optativas"){
-                                var find=findPosition(opt);
-                                if(find<9){
-                                    opt[find]=status;
-                                    optativas[find]=materia;
-                                }
-                                /*opt.push(status);
-                                if(numVer=="B"){
-                                    while(find ){
-                                    
-                                        find=saveOPT("B",opt,materia,"#00913D");
-                                        k++;
-                                    }
-                                }
-                                else{
-                                    while(find ){
-                                        find=saveOPT("",opt,materia,"#00913D");
-                                        k++;
-                                    }
-                                }*/
-                            }
-                        }
-                    }
-                    else if (status=="Reprovado por nota" || status=="Reprovado por Frequência"){
-                        document.getElementById("demo").innerHTML=xmlNode.childNodes[i].firstChild.nodeValue;
-                        if(numVer=="B")
-                            var element=document.getElementById(materia+"B");
-                        else
-                            var element=document.getElementById(materia+"");
-                        if(element!=null)
-                            element.style.background="#C2000D";
-                        else if(materia!=null){
-                            if(xmlNode.childNodes[i].firstChild.nodeValue=="Optativas"){
-                                var find=findPosition(opt);
-                                if(find<9){
-                                    opt[find]=status;
-                                    optativas[find]=materia;
-                                }
-                            }
-                        }
-
-                    }
-                    else if (status=="Equivalência de Disciplina" || status=="Dispensa de Disciplinas (com nota)"){
-                        document.getElementById("demo").innerHTML=xmlNode.childNodes[i].firstChild.nodeValue;
-                        if(numVer=="B")
-                            var element=document.getElementById(materia+"B");
-                        else
-                            var element=document.getElementById(materia+"");
-                        if(element!=null)
-                            element.style.background="#E6E61A";
-                        else if(materia!=null){
-                            if(xmlNode.childNodes[i].firstChild.nodeValue=="Optativas"){
-                                var find=findPosition(opt);
-                                 if(find<9){
-                                    opt[find]=status;
-                                    optativas[find]=materia;
-                                }
-                            }
-                        }
-
-                    }
-                    else if (status=="Matrícula"){
-                        document.getElementById("demo").innerHTML=xmlNode.childNodes[i].firstChild.nodeValue;
-                        if(numVer=="B")
-                            var element=document.getElementById(materia+"B");
-                        else
-                            var element=document.getElementById(materia+"");
-                        if(element!=null)
-                            element.style.background="#0075C9";
-                        else if(materia!=null){
-                            if(xmlNode.childNodes[i].firstChild.nodeValue=="Optativas"){
-                                var find=findPosition(opt);
-                                if(find<9){
-                                    opt[find]=status;
-                                    optativas[find]=materia;
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-
-                
-            //recursividade para carregas os filhos dos filhos
-                xmlMicoxArvore(xmlNode.childNodes[i],identacao,grr,opt);
-            }
-            
+function getLastTime(materia){
+    var materiaAluno=["","","","",""];
+    for(i=0;i<aluno.length;i++){
+        if(aluno[i].childNodes[29].firstChild.nodeValue==materia){
+            materiaAluno[0]=aluno[i].childNodes[29].firstChild.nodeValue; //codigo materia
+            materiaAluno[1]=aluno[i].childNodes[31].firstChild.nodeValue; // nome materia
+            materiaAluno[2]=aluno[i].childNodes[19].firstChild.nodeValue; // ano
+            materiaAluno[3]=aluno[i].childNodes[21].firstChild.nodeValue; // nota
+            materiaAluno[4]=aluno[i].childNodes[47].firstChild.nodeValue; // freq
         }
-        i++
     }
-    
+    return materiaAluno;
+}
+
+
+function mostrarMateria(obj,event){
+    var materia;
+    var text=["Código: ","Nome: ","Ano: ","Nota: ","Frequencia: "]
+    if(event.button == 0){    
+        var grr=document.getElementById("GRRAluno");
+        if(obj.innerHTML.indexOf("OPT") > -1){
+            var split = obj.innerHTML.split("OPT");
+            var number = parseInt(split[1]);
+            materia=getLastTime(optativasMaterias[number-1]);
+            for(i=0;i<materia.length;i++)
+                text[i]=text[i]+materia[i];
+            alert(text.join("\n"));
+        }
+        else{
+            materia=getLastTime(obj.innerHTML);
+            for(i=0;i<materia.length;i++)
+                text[i]=text[i]+materia[i];
+            alert(text.join("\n"));
+        }
+    }
 }
 
 function getAluno(xml,grr,aluno){
@@ -231,22 +125,25 @@ function setOutro(ind,vers,materia,cor){
 function arrumarTabela(aluno){
 	var opc;
 	var vers;
-
+    tg1=null;
+    tg2=null;
+    optativasMaterias=[];
 	if(aluno[0].childNodes[13].firstChild.nodeValue=="1998"){
 		document.getElementById("1998").style.visibility="visible";
-        	document.getElementById("2011").style.visibility="hidden";
-        	vers="B";
-    	}
+        document.getElementById("2011").style.visibility="hidden";
+        document.getElementById("1998").style.marginTop="-14.9%";
+        vers="B";
+    }
 	else{
 		document.getElementById("2011").style.visibility="visible";
-        	document.getElementById("1998").style.visibility="hidden";
-        	vers="";
+        document.getElementById("1998").style.visibility="hidden";
+        vers="";
 	}
-    	if(vers=="B"){
+    if(vers=="B"){
 	        var materias = document.getElementsByClassName("materiasB");
 	        var materiasCinzas = document.getElementsByClassName("materiasB1");
 	}
-    	else{
+    else{
 	        var materias = document.getElementsByClassName("materiasA");
 	        var materiasCinzas = document.getElementsByClassName("materiasA1");
     	}
@@ -270,12 +167,60 @@ function arrumarTabela(aluno){
 	}
 }
 
+function arrumarOptativas(optativas,optativasMat,tam){
+    var cont=optativas.length -1 ;
+    var k=0;
+    var i=0;
+    while(k<tam && i<optativas.length){
+        var element=document.getElementById("OPT"+(k+1).toString()+"B");
+        if(element!=null){
+            if(optativas[i]=="Aprovado"){
+                element.style.background="#00913D";
+                k++;
+                optativasMaterias.push(optativasMat[i]); 
+            }
+            else if((optativas[i]=="Equivalência de Disciplina" || optativas[i]=="Dispensa de Disciplinas (com nota)")){
+                element.style.background="#E6E61A";
+                k++;
+                optativasMaterias.push(optativasMat[i]); 
+            }
+            else if(optativas[i]=="Matrícula"){
+                element.style.background="#0075C9";
+                k++;
+                optativasMaterias.push(optativasMat[i]); 
+            }
+                       
+            
+        }
+        i++
+    }
+    if(k<tam){
+        var find=true;
+        for(i=k; i< tam;i++){
+            var element=document.getElementById("OPT"+i.toString()+"B");
+            if(element!=null){
+                if((optativas[cont]=="Reprovado por nota" || optativas[cont]=="Reprovado por Frequência")){
+                    element.style.background="#C2000D";
+                    optativasMaterias.push(optativasMat[i]);
+                }
+                cont--;
+                
+            }
+        }
+    }
+}
+
 function findMateria(aluno){
     var vers;
     var materia;
     var estrutura;
     var status;
 	var optativas = [];
+    var optativasMat = [];
+    var tg1S;
+    var tg1M;
+    var tg2S;
+    var tg2M;
     if(aluno[0].childNodes[13].firstChild.nodeValue=="1998")
         vers="B";
     else
@@ -316,74 +261,89 @@ function findMateria(aluno){
 		}
 		else if(estrutura=="Optativas"){
 			optativas.push(status);
-			optativasMaterias.push(materia);
+			optativasMat.push(materia);
 		}
+        else if(estrutura=="Trabalho de Graduação I"){
+            if(status=="Aprovado")
+                setMateria(vers,"TGI","#00913D");
+            else if((status=="Reprovado por nota" || status=="Reprovado por Frequência"))
+                setMateria(vers,"TGI","#C2000D");
+            else if((status=="Equivalência de Disciplina" || status=="Dispensa de Disciplinas (com nota)"))
+                setMateria(vers,"TGI","#E6E61A");
+            else if(status=="Matrícula")
+                setMateria(vers,"TGI","#0075C9");
+            tg1M=materia;
+        }
+        else if(estrutura=="Trabalho de Graduação II"){
+            if(status=="Aprovado")
+                setMateria(vers,"TGII","#00913D");
+            else if((status=="Reprovado por nota" || status=="Reprovado por Frequência"))
+                setMateria(vers,"TGII","#C2000D");
+            else if((status=="Equivalência de Disciplina" || status=="Dispensa de Disciplinas (com nota)"))
+                setMateria(vers,"TGII","#E6E61A");
+            else if(status=="Matrícula")
+                setMateria(vers,"TGII","#0075C9");
+            tg2M=materia;
+        }
 
     }
 	if(vers=="B"){
-		if(optativas.length < 9){
-			for(i=1;i<=optativas.length;i++){
+		if(optativas.length < 10){
+            k=0;
+			for(i=1;i<optativas.length;i++){
 				var element=document.getElementById("OPT"+i.toString()+"B");
 				if(element!=null){
-					if(optativas[i]=="Aprovado")
+					if(optativas[k]=="Aprovado")
 						element.style.background="#00913D";
-					else if((optativas[i]=="Reprovado por nota" || optativas[i]=="Reprovado por Frequência"))
+					else if((optativas[k]=="Reprovado por nota" || optativas[k]=="Reprovado por Frequência"))
 						element.style.background="#C2000D";
-					else if((optativas[i]=="Equivalência de Disciplina" || optativas[i]=="Dispensa de Disciplinas (com nota)"))
+					else if((optativas[k]=="Equivalência de Disciplina" || optativas[k]=="Dispensa de Disciplinas (com nota)"))
 						element.style.background="#E6E61A";
-					else if(optativas[i]=="Matrícula")
+					else if(optativas[k]=="Matrícula")
 						element.style.background="#0075C9";
+                    k++;
+                    optativasMaterias.push(optativasMat[i]);
 				}
+
 			}
 		}
 		else{
-			var cont=optativas.length -1 ;
-			var k=0;
-			var i=0;
-			while(k<9 && i<optativas.length){
-				var element=document.getElementById("OPT"+(k+1).toString()+"B");
-				if(element!=null){
-						if(optativas[i]=="Aprovado"){
-							element.style.background="#00913D";
-							k++;
-						}
-						else if((optativas[i]=="Equivalência de Disciplina" || optativas[i]=="Dispensa de Disciplinas (com nota)")){
-							element.style.background="#E6E61A";
-							k++;
-						}
-						else if(optativas[i]=="Matrícula"){
-							element.style.background="#0075C9";
-							k++;
-						}
-						
-					
-				}
-				i++
-			}
-			if(k<8){
-				var find=true;
-				for(i=k; i< 9;i++){
-					var element=document.getElementById("OPT"+i.toString()+"B");
-					if(element!=null){
-						if((optativas[cont]=="Reprovado por nota" || optativas[cont]=="Reprovado por Frequência")){
-							element.style.background="#C2000D";
-						}
-						cont--;
-					}
-				}
-			}
+			arrumarOptativas(optativas,optativasMat,9);
 		}
-			
-					
-	
 	}
+    else{
+       if(optativas.length < 7){
+            k=0;
+            for(i=1;i<optativas.length;i++){
+                var element=document.getElementById("OPT"+i.toString()+"B");
+                if(element!=null){
+                    if(optativas[k]=="Aprovado")
+                        element.style.background="#00913D";
+                    else if((optativas[k]=="Reprovado por nota" || optativas[k]=="Reprovado por Frequência"))
+                        element.style.background="#C2000D";
+                    else if((optativas[k]=="Equivalência de Disciplina" || optativas[k]=="Dispensa de Disciplinas (com nota)"))
+                        element.style.background="#E6E61A";
+                    else if(optativas[k]=="Matrícula")
+                        element.style.background="#0075C9";
+                    k++;
+                    optativasMaterias.push(optativasMat[i]);
+                }
+
+            }
+        }
+        else{
+            arrumarOptativas(optativas,optativasMat,6);
+        } 
+    }
 	
 }
 
-function sayHello(){
+function mostrarTabela(){
+    aluno=[];
 	var grr=document.getElementById("GRRAluno");
 	if(grr.value=="" || grr.value==null || grr == null){
-		document.getElementById("teste").style.visibility="hidden";
+		document.getElementById("2011").style.visibility="hidden";
+        document.getElementById("1998").style.visibility="hidden";
         alert("Você Não digitou nenhum GRR\n" +
           "Por favor digite um GRR");
     	grr.focus();
@@ -393,15 +353,11 @@ function sayHello(){
 		
     	document.getElementById("demo").innerHTML=grr.value;
         
-        var opt= ["","","","","","","","",""];
-        var aluno=[];
         if(xml==null)
             xml=xmlMicoxLoader("alunos.xml");
         getAluno(xml,grr,aluno);
 		arrumarTabela(aluno);
         findMateria(aluno);
-        //xmlMicoxArvore(xml,"",grr,opt);
-        //saveHtml(opt,numVer);
     	return true;
 
     }
