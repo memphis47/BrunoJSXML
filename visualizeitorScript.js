@@ -22,45 +22,8 @@ function xmlMicoxLoader(url){
 }
 
 
-function lerHistorico(){
-    var i;
-    for(i=0;i<opt.length;i++){
-        if(opt[i]=="Reprovado por nota" || opt[i]=="Reprovado por Frequência")
-            return i;
-    }
-    for(i=0;i<opt.length;i++){
-        if(opt[i]=="" )
-            return i;
-    }
-    
-    return i;
-}
 
-function saveHtml(opt,numVer){
-    var i;
-    for(i=0;i<opt.length;i++){
-        if(opt[i]=="Aprovado"){
-            var element=document.getElementById("OPT"+(i+1).toString()+numVer);
-            if(element!=null)
-                element.style.background="#00913D";
-        }
-        else if(opt[i]=="Reprovado por nota" || opt[i]=="Reprovado por Frequência" ){
-            var element=document.getElementById("OPT"+(i+1).toString()+numVer);
-            if(element!=null)
-                element.style.background="#C2000D";
-        }
-        else if (opt[i]=="Equivalência de Disciplina" || opt[i]=="Dispensa de Disciplinas (com nota)"){
-            var element=document.getElementById("OPT"+(i+1).toString()+numVer);
-            if(element!=null)
-                element.style.background="#E6E61A";
-        }
-        else if (opt[i]=="Matrícula"){
-            var element=document.getElementById("OPT"+(i+1).toString()+numVer);
-            if(element!=null)
-                element.style.background="#0075C9";
-        }
-    }
-}
+
 
 function getLastTime(materia){
     var materiaAluno=["","","","",""];
@@ -76,16 +39,37 @@ function getLastTime(materia){
     return materiaAluno;
 }
 
+function lerHistorico(materia){
+    var materiaHistorico=[];
+    for(i=0;i<aluno.length;i++){
+        if(aluno[i].childNodes[29].firstChild.nodeValue==materia){
+            materiaHistorico.push(aluno[i]);
+        }
+    }
+    return materiaHistorico;
+}
+
 
 function mostrarMateria(obj,event){
     var materia;
     var text=["Código: ","Nome: ","Ano: ","Nota: ","Frequencia: "]
     if(event.button == 0){    
-        var grr=document.getElementById("GRRAluno");
         if(obj.innerHTML.indexOf("OPT") > -1){
             var split = obj.innerHTML.split("OPT");
             var number = parseInt(split[1]);
             materia=getLastTime(optativasMaterias[number-1]);
+            for(i=0;i<materia.length;i++)
+                text[i]=text[i]+materia[i];
+            alert(text.join("\n"));
+        }
+        else if(obj.innerHTML=="TG I"){
+            materia=getLastTime(tg1);
+            for(i=0;i<materia.length;i++)
+                text[i]=text[i]+materia[i];
+            alert(text.join("\n"));
+        }
+        else if(obj.innerHTML=="TG II"){
+            materia=getLastTime(tg2);
             for(i=0;i<materia.length;i++)
                 text[i]=text[i]+materia[i];
             alert(text.join("\n"));
@@ -95,6 +79,79 @@ function mostrarMateria(obj,event){
             for(i=0;i<materia.length;i++)
                 text[i]=text[i]+materia[i];
             alert(text.join("\n"));
+        }
+    }
+    else if(event.button == 2){
+        var matriz=[];
+        if(obj.innerHTML.indexOf("OPT") > -1){
+            var split = obj.innerHTML.split("OPT");
+            var number = parseInt(split[1]);
+            var hist=lerHistorico(optativasMaterias[number-1]);
+            if(hist.length>0){
+                matriz.push("Materia: "+ hist[0].childNodes[31].firstChild.nodeValue);
+                matriz.push("Código: "+ hist[0].childNodes[29].firstChild.nodeValue);
+                matriz.push("            ");
+                for(i=0;i<hist.length;i++){
+                        matriz.push(text[2]+hist[i].childNodes[19].firstChild.nodeValue); // ano
+                        matriz.push(text[3]+hist[i].childNodes[21].firstChild.nodeValue); // nota
+                        matriz.push(text[4]+hist[i].childNodes[47].firstChild.nodeValue); // freq
+                        matriz.push("            ");
+                }
+                alert(matriz.join("\n"));
+            }
+            else
+                alert("Materia sem histórico disponivel");
+        }
+        else if(obj.innerHTML=="TG I"){
+            var hist=lerHistorico(tg1);
+            if(hist.length>0){
+                matriz.push("Materia: "+ hist[0].childNodes[31].firstChild.nodeValue);
+                matriz.push("Código: "+ hist[0].childNodes[29].firstChild.nodeValue);
+                matriz.push("            ");
+                for(i=0;i<hist.length;i++){
+                        matriz.push(text[2]+hist[i].childNodes[19].firstChild.nodeValue); // ano
+                        matriz.push(text[3]+hist[i].childNodes[21].firstChild.nodeValue); // nota
+                        matriz.push(text[4]+hist[i].childNodes[47].firstChild.nodeValue); // freq
+                        matriz.push("            ");
+                }
+                alert(matriz.join("\n"));
+            }
+            else
+                alert("Materia sem histórico disponivel");
+        }
+        else if(obj.innerHTML=="TG II"){
+            var hist=lerHistorico(tg2);
+            if(hist.length>0){
+                matriz.push("Materia: "+ hist[0].childNodes[31].firstChild.nodeValue);
+                matriz.push("Código: "+ hist[0].childNodes[29].firstChild.nodeValue);
+                matriz.push("            ");
+                for(i=0;i<hist.length;i++){
+                        matriz.push(text[2]+hist[i].childNodes[19].firstChild.nodeValue); // ano
+                        matriz.push(text[3]+hist[i].childNodes[21].firstChild.nodeValue); // nota
+                        matriz.push(text[4]+hist[i].childNodes[47].firstChild.nodeValue); // freq
+                        matriz.push("            ");
+                }
+                alert(matriz.join("\n"));
+            }
+            else
+                alert("Materia sem histórico disponivel");
+        }
+        else{
+            var hist=lerHistorico(obj.innerHTML);
+            if(hist.length>0){
+                matriz.push("Materia: "+ hist[0].childNodes[31].firstChild.nodeValue);
+                matriz.push("Código: "+ hist[0].childNodes[29].firstChild.nodeValue);
+                matriz.push("            ");
+                for(i=0;i<hist.length;i++){
+                        matriz.push(text[2]+hist[i].childNodes[19].firstChild.nodeValue); // ano
+                        matriz.push(text[3]+hist[i].childNodes[21].firstChild.nodeValue); // nota
+                        matriz.push(text[4]+hist[i].childNodes[47].firstChild.nodeValue); // freq
+                        matriz.push("            ");
+                }
+                alert(matriz.join("\n"));
+            }
+            else
+                alert("Materia sem histórico disponivel");
         }
     }
 }
@@ -217,9 +274,7 @@ function findMateria(aluno){
     var status;
 	var optativas = [];
     var optativasMat = [];
-    var tg1S;
     var tg1M;
-    var tg2S;
     var tg2M;
     if(aluno[0].childNodes[13].firstChild.nodeValue=="1998")
         vers="B";
@@ -335,6 +390,8 @@ function findMateria(aluno){
             arrumarOptativas(optativas,optativasMat,6);
         } 
     }
+    tg1=tg1M;
+    tg2=tg2M;
 	
 }
 
