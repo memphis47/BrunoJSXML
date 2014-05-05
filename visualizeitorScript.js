@@ -188,7 +188,7 @@ function arrumarTabela(aluno){
 	if(aluno[0].childNodes[13].firstChild.nodeValue=="1998"){
 		document.getElementById("1998").style.visibility="visible";
         document.getElementById("2011").style.visibility="hidden";
-        document.getElementById("1998").style.marginTop="-14.9%";
+        document.getElementById("1998").style.marginTop="-32.4%";
         vers="B";
     }
 	else{
@@ -408,13 +408,18 @@ function mostrarTabela(){
     }
     else{
 		
-    	document.getElementById("demo").innerHTML=grr.value;
+    	
         
         if(xml==null)
             xml=xmlMicoxLoader("alunos.xml");
         getAluno(xml,grr,aluno);
-		arrumarTabela(aluno);
-        findMateria(aluno);
+        if(aluno.length>0){
+            document.getElementById("GRR").innerHTML="Você está visualizando a grade do "+grr.value;
+    		arrumarTabela(aluno);
+            findMateria(aluno);
+        }
+        else
+            alert("Aluno "+grr.value+" não encontrado");
     	return true;
 
     }
