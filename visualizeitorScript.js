@@ -58,27 +58,43 @@ function mostrarMateria(obj,event){
             var split = obj.innerHTML.split("OPT");
             var number = parseInt(split[1]);
             materia=getLastTime(optativasMaterias[number-1]);
-            for(i=0;i<materia.length;i++)
-                text[i]=text[i]+materia[i];
-            alert(text.join("\n"));
+            if(materia[0]!=materia[1] && materia[1]!=materia[2] && materia[2]!=materia[3] && materia[3]!=""){
+                for(i=0;i<materia.length;i++)
+                    text[i]=text[i]+materia[i];
+                alert(text.join("\n"));
+            }
+            else
+                alert("Materia ainda não cursada");
         }
         else if(obj.innerHTML=="TG I"){
             materia=getLastTime(tg1);
-            for(i=0;i<materia.length;i++)
-                text[i]=text[i]+materia[i];
-            alert(text.join("\n"));
+            if(materia[0]!=materia[1] && materia[1]!=materia[2] && materia[2]!=materia[3] && materia[3]!=""){
+                for(i=0;i<materia.length;i++)
+                    text[i]=text[i]+materia[i];
+                alert(text.join("\n"));
+            }
+            else
+                alert("Materia ainda não cursada");
         }
         else if(obj.innerHTML=="TG II"){
             materia=getLastTime(tg2);
-            for(i=0;i<materia.length;i++)
-                text[i]=text[i]+materia[i];
-            alert(text.join("\n"));
+            if(materia[0]!=materia[1] && materia[1]!=materia[2] && materia[2]!=materia[3] && materia[3]!=""){
+                for(i=0;i<materia.length;i++)
+                    text[i]=text[i]+materia[i];
+                alert(text.join("\n"));
+            }
+            else
+                alert("Materia ainda não cursada");
         }
         else{
             materia=getLastTime(obj.innerHTML);
-            for(i=0;i<materia.length;i++)
-                text[i]=text[i]+materia[i];
-            alert(text.join("\n"));
+            if(materia[0]!=materia[1] && materia[1]!=materia[2] && materia[2]!=materia[3] && materia[3]!=""){
+                for(i=0;i<materia.length;i++)
+                    text[i]=text[i]+materia[i];
+                alert(text.join("\n"));
+            }
+            else
+                alert("Materia ainda não cursada");
         }
     }
     else if(event.button == 2){
