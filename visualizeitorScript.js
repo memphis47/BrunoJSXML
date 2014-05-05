@@ -189,11 +189,14 @@ function arrumarTabela(aluno){
 		document.getElementById("1998").style.visibility="visible";
         document.getElementById("2011").style.visibility="hidden";
         document.getElementById("1998").style.marginTop="-32.4%";
+        document.getElementById("leg").style.marginTop="10%";
         vers="B";
     }
 	else{
 		document.getElementById("2011").style.visibility="visible";
         document.getElementById("1998").style.visibility="hidden";
+         document.getElementById("1998").style.marginTop="0%";
+        document.getElementById("leg").style.marginTop="-23%";
         vers="";
 	}
     if(vers=="B"){

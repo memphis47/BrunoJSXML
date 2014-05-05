@@ -15,6 +15,7 @@
 				visibility:visible;
 				margin-left: 2.6%;
 				width: 95%;
+				margin-top: -14%;
 			}
 
 			.Semestre {
@@ -180,11 +181,6 @@
 				text-align:left;
 				margin-left: 5%;
 				text-shadow: 0.1em 0.1em 0.2em black;
-			}
-				
-			.foot{
-				margin-top:100px;
-				
 			}
 
 			.footCss{
